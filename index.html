@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Operasi Kalkulator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="calculator">
+      <h2>Kalkulator Sederhana</h2>
+      <h3>Pilih Operasi Kalkulator</h3>
+
+      <button onclick="navigateToCalculator('addition')">Penambahan</button>
+      <button onclick="navigateToCalculator('subtraction')">Pengurangan</button>
+      <button onclick="navigateToCalculator('multiplication')">
+        Perkalian
+      </button>
+      <button onclick="navigateToCalculator('division')">Pembagian</button>
+      <button onclick="navigateToCalculator('free_calculation')">
+        Perhitungan Bebas
+      </button>
+
+      <h5>@PMPL 3TI3</h5>
+    </div>
+    <script>
+      function navigateToCalculator(operation) {
+        if (operation === "free_calculation") {
+          window.location.href = `perhitungan_bebas.html`;
+        } else {
+          window.location.href = `kalkulator.html?operation=${operation}`;
+        }
+      }
+    </script>
+  </body>
+</html>

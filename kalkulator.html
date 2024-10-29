@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Operasi</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="calculator">
+      <h2 id="judulOperasi">Kalkulator</h2>
+
+      <label for="jumlahAngka">Masukkan jumlah angka:</label>
+      <input
+        type="number"
+        id="jumlahAngka"
+        min="2"
+        placeholder="Masukkan jumlah angka"
+      />
+
+      <button onclick="generateNumberInputs()">Buat Input Angka</button>
+
+      <div id="inputArea"></div>
+
+      <button onclick="calculate()">Hitung</button>
+
+      <!-- Mengubah elemen hasil menjadi input text -->
+      <input type="text" id="hasil" placeholder="Hasil" readonly />
+      <button onclick="clearInputs()">Clear</button>
+      <button onclick="goBack()">Back</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
