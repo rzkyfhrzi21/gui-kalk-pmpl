@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Perhitungan Bebas</title>
-    <link rel="icon" href="5.jpg" />
-    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <title>Kalkulator Penjumlahan</title>
+    <link rel="icon" href="1.jpg" />
     <style>
       body {
         display: flex;
@@ -27,7 +26,7 @@
         color: #fff;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         margin-bottom: 20px; /* Jarak bawah untuk kontainer */
-        background-image: url("5.jpg"); /* Mengatur gambar background */
+        background-image: url("1.jpg"); /* Mengatur gambar background */
         background-size: cover; /* Menyesuaikan gambar dengan ukuran container */
         background-position: center; /* Menjaga gambar tetap di tengah */
         background-repeat: no-repeat;
@@ -58,7 +57,7 @@
   </head>
   <body>
     <div class="calculator">
-      <h2>Perhitungan Bebas</h2>
+      <h2>Kalkulator Penjumlahan</h2>
 
       <label for="jumlahAngka">Masukkan jumlah angka:</label>
       <input
@@ -69,10 +68,9 @@
       />
 
       <button onclick="generateInputFields()">Buat Input Angka</button>
-
       <div id="inputArea"></div>
 
-      <button onclick="calculate()">Hitung</button>
+      <button onclick="calculateTambah()">Hitung</button>
       <input type="text" id="hasil" placeholder="Hasil" readonly />
       <button onclick="clearInputs()">Clear</button>
       <button onclick="goBack()">Back</button>
@@ -84,7 +82,7 @@
           document.getElementById("jumlahAngka").value
         );
         const inputArea = document.getElementById("inputArea");
-        inputArea.innerHTML = ""; // Menghapus input sebelumnya
+        inputArea.innerHTML = "";
 
         if (isNaN(jumlahAngka) || jumlahAngka < 2) {
           alert("Masukkan jumlah angka minimal 2");
@@ -96,92 +94,33 @@
           angkaInput.type = "number";
           angkaInput.className = "angkaInput";
           angkaInput.placeholder = `Masukkan angka ${i + 1}`;
-
-          const operasiSelect = document.createElement("select");
-          operasiSelect.className = "operasiSelect";
-
-          const optionTambah = document.createElement("option");
-          optionTambah.value = "tambah";
-          optionTambah.textContent = "+";
-
-          const optionKurang = document.createElement("option");
-          optionKurang.value = "kurang";
-          optionKurang.textContent = "-";
-
-          const optionKali = document.createElement("option");
-          optionKali.value = "kali";
-          optionKali.textContent = "×";
-
-          const optionBagi = document.createElement("option");
-          optionBagi.value = "bagi";
-          optionBagi.textContent = "÷";
-
-          operasiSelect.appendChild(optionTambah);
-          operasiSelect.appendChild(optionKurang);
-          operasiSelect.appendChild(optionKali);
-          operasiSelect.appendChild(optionBagi);
-
           inputArea.appendChild(angkaInput);
-          inputArea.appendChild(operasiSelect);
         }
       }
 
-      function calculate() {
+      function calculateTambah() {
         const angkaInputs = document.querySelectorAll(".angkaInput");
-        const operasiSelects = document.querySelectorAll(".operasiSelect");
+        let hasil = 0;
 
-        if (angkaInputs.length === 0) {
-          document.getElementById("hasil").value =
-            "Tidak ada angka untuk dihitung!";
-          return;
-        }
-
-        let hasil = parseFloat(angkaInputs[0].value); // Mulai dengan angka pertama
-
-        for (let i = 0; i < angkaInputs.length - 1; i++) {
-          const nextAngka = parseFloat(angkaInputs[i + 1].value);
-          const operasi = operasiSelects[i].value;
-
-          if (isNaN(hasil) || isNaN(nextAngka)) {
+        angkaInputs.forEach((input) => {
+          const angka = parseFloat(input.value);
+          if (isNaN(angka)) {
             document.getElementById("hasil").value =
               "Masukkan angka yang valid!";
             return;
           }
-
-          switch (operasi) {
-            case "tambah":
-              hasil += nextAngka;
-              break;
-            case "kurang":
-              hasil -= nextAngka;
-              break;
-            case "kali":
-              hasil *= nextAngka;
-              break;
-            case "bagi":
-              if (nextAngka === 0) {
-                document.getElementById("hasil").value =
-                  "Error: Tidak dapat membagi dengan nol!";
-                return;
-              }
-              hasil /= nextAngka;
-              break;
-            default:
-              break;
-          }
-        }
+          hasil += angka;
+        });
 
         document.getElementById("hasil").value = `Hasil: ${hasil}`;
       }
 
-      // Fungsi untuk membersihkan input dan hasil
       function clearInputs() {
         document.getElementById("jumlahAngka").value = "";
         document.getElementById("inputArea").innerHTML = "";
         document.getElementById("hasil").value = "";
       }
 
-      // Fungsi untuk kembali ke halaman utama
       function goBack() {
         window.location.href = "index.html";
       }

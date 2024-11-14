@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Pembagian</title>
+    <link rel="icon" href="4.jpg" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+      }
+
+      .calculator {
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+        background-image: url("4.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      input,
+      button {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin: 10px 0;
+        padding: 10px;
+        font-size: 1em;
+        border-radius: 5px;
+        border: none;
+      }
+
+      button {
+        background-color: #ff8c00;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #ffb040;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <h2>Kalkulator Pembagian</h2>
+
+      <label for="jumlahAngka">Masukkan jumlah angka:</label>
+      <input
+        type="number"
+        id="jumlahAngka"
+        min="2"
+        placeholder="Masukkan jumlah angka"
+      />
+
+      <button onclick="generateInputFields()">Buat Input Angka</button>
+      <div id="inputArea"></div>
+
+      <button onclick="calculateBagi()">Hitung</button>
+      <input type="text" id="hasil" placeholder="Hasil" readonly />
+      <button onclick="clearInputs()">Clear</button>
+      <button onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+      function generateInputFields() {
+        const jumlahAngka = parseInt(
+          document.getElementById("jumlahAngka").value
+        );
+        const inputArea = document.getElementById("inputArea");
+        inputArea.innerHTML = ""; // Menghapus input sebelumnya
+
+        if (isNaN(jumlahAngka) || jumlahAngka < 2) {
+          alert("Masukkan jumlah angka minimal 2");
+          return;
+        }
+
+        for (let i = 0; i < jumlahAngka; i++) {
+          const angkaInput = document.createElement("input");
+          angkaInput.type = "number";
+          angkaInput.className = "angkaInput";
+          angkaInput.placeholder = `Masukkan angka ${i + 1}`;
+          inputArea.appendChild(angkaInput);
+        }
+      }
+
+      function calculateBagi() {
+        const angkaInputs = document.querySelectorAll(".angkaInput");
+        let hasil = parseFloat(angkaInputs[0].value);
+
+        for (let i = 1; i < angkaInputs.length; i++) {
+          const nextAngka = parseFloat(angkaInputs[i].value);
+          if (isNaN(hasil) || isNaN(nextAngka)) {
+            document.getElementById("hasil").value =
+              "Masukkan angka yang valid!";
+            return;
+          }
+          if (nextAngka === 0) {
+            document.getElementById("hasil").value =
+              "Error: Tidak dapat membagi dengan nol!";
+            return;
+          }
+          hasil /= nextAngka;
+        }
+
+        document.getElementById("hasil").value = `Hasil: ${hasil}`;
+      }
+
+      function clearInputs() {
+        document.getElementById("jumlahAngka").value = "";
+        document.getElementById("inputArea").innerHTML = "";
+        document.getElementById("hasil").value = "";
+      }
+
+      function goBack() {
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>

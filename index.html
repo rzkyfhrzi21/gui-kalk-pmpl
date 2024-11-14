@@ -4,31 +4,87 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu Operasi Kalkulator</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="1.jpg" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+      }
+
+      .calculator {
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+        background-color: #017db4;
+      }
+
+      input,
+      button {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin: 10px 0;
+        padding: 10px;
+        font-size: 1em;
+        border-radius: 5px;
+        border: none;
+      }
+
+      button {
+        background-color: #ff8c00;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #ffb040;
+      }
+    </style>
   </head>
   <body>
     <div class="calculator">
       <h2>Kalkulator Sederhana</h2>
       <h3>Pilih Operasi Kalkulator</h3>
 
-      <button onclick="navigateToCalculator('addition')">Penambahan</button>
-      <button onclick="navigateToCalculator('subtraction')">Pengurangan</button>
-      <button onclick="navigateToCalculator('multiplication')">
-        Perkalian
-      </button>
-      <button onclick="navigateToCalculator('division')">Pembagian</button>
-      <button onclick="navigateToCalculator('free_calculation')">
-        Perhitungan Bebas
-      </button>
+      <button onclick="navigateToCalculator('pertambahan')">Pertambahan</button>
+      <button onclick="navigateToCalculator('pengurangan')">Pengurangan</button>
+      <button onclick="navigateToCalculator('perkalian')">Perkalian</button>
+      <button onclick="navigateToCalculator('pembagian')">Pembagian</button>
+      <button onclick="navigateToCalculator('bebas')">Perhitungan Bebas</button>
 
       <h5>@PMPL 3TI3</h5>
     </div>
     <script>
       function navigateToCalculator(operation) {
-        if (operation === "free_calculation") {
-          window.location.href = `perhitungan_bebas.html`;
-        } else {
-          window.location.href = `kalkulator.html?operation=${operation}`;
+        switch (operation) {
+          case "pertambahan":
+            window.location.href = `perhitungan_tambah.html`;
+            break;
+          case "pengurangan":
+            window.location.href = `perhitungan_kurang.html`;
+            break;
+          case "perkalian":
+            window.location.href = `perhitungan_kali.html`;
+            break;
+          case "pembagian":
+            window.location.href = `perhitungan_bagi.html`;
+            break;
+          case "bebas":
+            window.location.href = `perhitungan_bebas.html`;
+            break;
+          default:
+            break;
         }
       }
     </script>
